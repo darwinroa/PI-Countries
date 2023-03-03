@@ -24,7 +24,8 @@ server.use((req, res, next) => {
 
 // server.use('/', routes);
 server.use('/', (req, res) => {
-  console.log("Hola Mundo, vine a conquistarte, y estoy en app.js");
+  console.log("Hola Mundo, vine a conquistarte");
+  res.status(200).send('Lo he conquistado');
 });
 
 // Error catching endware.
