@@ -1,13 +1,10 @@
 const { Router } = require('express');
+const { getCountriesHandler, getCountryHandler } = require('../handlers/countriesHandlers');
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.status(200).send('Aquí se hace la petición a la API');
-})
+router.get('/', getCountriesHandler);
 
-router.get('/:id', (req, res) => {
-    res.status(200).send('Quiero ver el detalle');
-})
+router.get('/:id', getCountryHandler);
 
 module.exports = router;
