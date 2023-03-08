@@ -7,7 +7,8 @@ const getActivitiesHandler = (req, res) => {
 const createActivityHandler = async (req,res) => {
     const { name, difficulty, duration, season, countryID } = req.body;
     try {
-        const newTour = await createActivity(name, difficulty, duration, season, countryID);
+        const seasonLowerCase = season.toLowerCase();
+        const newTour = await createActivity(name, difficulty, duration, seasonLowerCase, countryID);
         res.status(200).json(newTour);        
     } catch (error) {
        res.status(400).json({ error: error.message });        
