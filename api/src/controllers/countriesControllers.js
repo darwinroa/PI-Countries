@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { Op } = require('sequelize');
 const { Country } = require('../db');
 
 
@@ -29,11 +30,27 @@ const apiCountriesData = async () => {
     console.log('Data successfully loaded into database');
 }
 
+// Get all Countries from the Data Base
 const getAllCountries = async () => await Country.findAll({
     attributes: ['flag', 'name', 'continent']
 });
 
+// Get country by ID
+const getCountryByID = async (id) => 
+    await Country.findByPk(id);
+
+// Get country by name, se está buscando una coinciddencia sin importar mayusculas, además, el textod de búsqueda puede estar al inicio, final, o al principio de la coincidencia con el nombre del país
+const getCountryByName = async (name) => 
+    await Country.findAll( { where: { 
+        name: {
+            [Op.iLike]: '%' + name + '%',
+        }
+     } 
+    } );
+
 module.exports = {
     apiCountriesData,
     getAllCountries,
+    getCountryByID,
+    getCountryByName
 }

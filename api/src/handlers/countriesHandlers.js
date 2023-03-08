@@ -1,11 +1,14 @@
-const { getAllCountries } = require('../controllers/countriesControllers');
+const { getAllCountries, getCountryByID, getCountryByName } = require('../controllers/countriesControllers');
 
 const getCountriesHandler = async (req, res) => {
     const { name } = req.query;
     try {
-        if (name) res.status(200).send(`Quiero saber el detalle del país ${name}`);
-    
-        else {
+        if (name) {
+            const countryByName = await getCountryByName(name);
+            countryByName.length === 0 ? 
+            res.status(400).json({error: 'Country not found'}) :
+            res.status(200).json(countryByName);
+        } else {
             const countries = await getAllCountries();
             res.status(200).json(countries);
         }
@@ -14,9 +17,14 @@ const getCountriesHandler = async (req, res) => {
     }
 }
 
-const getCountryHandler = (req, res) => {
+const getCountryHandler = async (req, res) => {
     const { id } = req.params;
-    res.status(200).send(`Quiero ver el detalle del país con el id ${id}`);
+    try {
+        const country = await getCountryByID(id);
+        res.status(200).json(country);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 }
 
 module.exports = {
