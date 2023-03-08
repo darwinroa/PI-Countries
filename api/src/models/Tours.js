@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         difficulty: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             defaultValue: 1,
             validate: {
                 min: 1,
