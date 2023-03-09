@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { Op } = require('sequelize');
-const { Country } = require('../db');
+const { Country, Tour } = require('../db');
 
 
 // Aquí se limpia la data recibida para setearlo con los valores que se necesitan enviar
@@ -37,7 +37,12 @@ const getAllCountries = async () => await Country.findAll({
 
 // Get country by ID
 const getCountryByID = async (id) => 
-    await Country.findByPk(id);
+    await Country.findByPk(id, {
+        include: {
+            model: Tour,
+            attributes: ["name", "difficulty", "duration", "season"]
+        }
+    });
 
 // Get country by name, se está buscando una coinciddencia sin importar mayusculas, además, el textod de búsqueda puede estar al inicio, final, o al principio de la coincidencia con el nombre del país
 const getCountryByName = async (name) => 
