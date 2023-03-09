@@ -1,6 +1,7 @@
 const { Tour } = require('../db');
 
-const getAllActivities = 'Estoy solicitando todas las actividades';
+// Get all activities
+const getAllActivities = async () => await Tour.findAll();
 
 // Creando un nuevo Activity Tour
 const createActivity = async (name, difficulty, duration, season, countryID) => {

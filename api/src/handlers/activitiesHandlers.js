@@ -1,7 +1,8 @@
 const { getAllActivities, createActivity } = require('../controllers/activitiesControllers');
 
-const getActivitiesHandler = (req, res) => {
-    res.status(200).send(getAllActivities);
+const getActivitiesHandler = async (req, res) => {
+    const allActivities = await getAllActivities()
+    res.status(200).json(allActivities);
 }
 
 const createActivityHandler = async (req,res) => {
