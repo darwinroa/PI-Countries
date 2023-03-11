@@ -32,7 +32,7 @@ const apiCountriesData = async () => {
 
 // Get all Countries from the Data Base
 const getAllCountries = async () => await Country.findAll({
-    attributes: ['flag', 'name', 'continent']
+    attributes: ['id', 'flag', 'name', 'continent']
 });
 
 // Get country by ID
