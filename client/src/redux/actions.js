@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_COUNTRIES } from "./action_type";
+import { GET_COUNTRIES, GET_COUNTRY } from "./action_type";
 
 const urlAPI = 'http://localhost:3001/countries';
 
@@ -9,6 +9,16 @@ export const getCountriesAction = () => {
         dispatch({
             type: GET_COUNTRIES,
             payload: countriesData,
+        });
+    }
+}
+
+export const getCountryByIdAction = (id) => {
+    return async function (dispatch) {
+        const countryData = (await axios.get(`${urlAPI}/${id}`)).data;
+        dispatch({
+            type: GET_COUNTRY,
+            payload: countryData,
         });
     }
 }

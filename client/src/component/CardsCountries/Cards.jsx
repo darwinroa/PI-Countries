@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 export default function Cards() {
     const countries = useSelector(state => state.countries);
+
     return (
         <div className={style.cards}>
             { countries.map( (country) => {  

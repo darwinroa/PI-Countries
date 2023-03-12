@@ -26,11 +26,6 @@ export default function Activities() {
         const property = event.target.name;
         const value = event.target.value;
 
-        // validate({
-        //     ...form,
-        //     [property]: value
-        // });
-
         setForm({
             ...form,
             [property]: value
@@ -41,13 +36,6 @@ export default function Activities() {
             [property]: value
         })) 
     }
-
-    //Validando que los campos del formulario sean correctos
-    // const validate = (form) => {
-    //     if ( form.name === '' ) setErrors({ ...errors, name:'Missing name' });
-    //     else setErrors({ ...errors, email:'Debe ser un email' });
-    //     if (form.email === '') setErrors({ ...errors, email:'Email vacío' })
-    // }
 
     const submitHandler = (event) => {
         event.preventDefault();
