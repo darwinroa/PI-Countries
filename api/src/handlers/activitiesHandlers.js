@@ -10,7 +10,7 @@ const createActivityHandler = async (req,res) => {
     try {
         const seasonLowerCase = season.toLowerCase();
         const newTour = await createActivity(name, difficulty, duration, seasonLowerCase, countryID);
-        res.status(200).json(newTour);        
+        res.status(200).send('The new tour has been created successfully');        
     } catch (error) {
        res.status(400).json({ error: error.message });        
     }
