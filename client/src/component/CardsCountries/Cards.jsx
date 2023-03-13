@@ -1,5 +1,7 @@
 import Card from "../CardCountry/Card";
+import Paged from "../Paged/Paged";
 import style from './Cards.module.css';
+import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { orderByName, orderByPopulation, filterByContinent, filterByActivities, searchByName, reset } from "../../redux/actions";
 
@@ -7,6 +9,25 @@ import { orderByName, orderByPopulation, filterByContinent, filterByActivities, 
 export default function Cards() {
     const countries = useSelector(state => state.countries); //Obteniendo el estado de los países listados
     const activities = useSelector(state => state.activities); //Obteniendo el estado de las actividades listadas
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Creando los estados del paginado
+     */
+
+    const [currentPage, setCurentPage] = useState(1);
+    const [countriesPerPage, setCountriesPerPage] = useState(10);
+    const indexOfLastCountry = currentPage * countriesPerPage;
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry);
+    const paged = (pageNumber) => {
+        setCurentPage(pageNumber);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Creando la barra de filtros y ordenamientos
@@ -23,7 +44,6 @@ export default function Cards() {
         if (name === 'search') dispatch(searchByName(value));
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -96,7 +116,7 @@ export default function Cards() {
 
             { countries?.length === 0 ? 
             <p>Country Not Found</p> :
-            countries?.map( (country) => {  
+            currentCountries?.map( (country) => {  
                 return <Card
                     id          = {country.id}
                     flag        = {country.flag}
@@ -105,6 +125,12 @@ export default function Cards() {
                     key         = {country.id}
                 />
             } ) }
+
+            <Paged
+                countriesPerPage={ countriesPerPage }
+                allCountries={ countries.length }
+                paged={ paged }
+            />
         </div>
     )
 }
