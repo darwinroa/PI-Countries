@@ -6,7 +6,7 @@ const getCountriesHandler = async (req, res) => {
         if (name) {
             const countryByName = await getCountryByName(name);
             countryByName.length === 0 ? 
-            res.status(400).json({error: 'Country not found'}) :
+            res.status(404).json({error: 'Country not found'}) :
             res.status(200).json(countryByName);
         } else {
             const countries = await getAllCountries();

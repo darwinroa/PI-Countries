@@ -32,7 +32,11 @@ const apiCountriesData = async () => {
 
 // Get all Countries from the Data Base
 const getAllCountries = async () => await Country.findAll({
-    attributes: ['id', 'flag', 'name', 'continent']
+    attributes: ['id', 'flag', 'name', 'continent', 'population' ],
+    include: {
+        model: Tour,
+        attributes: ["name"]
+    }
 });
 
 // Get country by ID

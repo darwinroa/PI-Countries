@@ -28,7 +28,7 @@ export default function Detail() {
         <li><span>Area: </span>{country.area}</li>
       </ul>
       {(countryTours && countryTours.length!==0) && <h2>Tourist Activities</h2>}      
-      {(countryTours && countryTours.length!==0) && countryTours.map((tour) => {
+      {countryTours?.map((tour) => {
         return <TourActivity 
           name        = {tour.name}
           difficulty  = {tour.difficulty}
