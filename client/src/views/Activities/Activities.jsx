@@ -23,7 +23,7 @@ export default function Activities() {
         countryID: []
     });
 
-    const [countriesName, setCountriesName] = useState({ countries: [] });
+    const [countriesName, setCountriesName] = useState({ countries: [] }); // Para manejar los Países que se han seleccionado
     
     // Creando manejo de errores para el formulario
     const [errors, setErrors] = useState({
@@ -39,33 +39,32 @@ export default function Activities() {
         const property = event.target.name;
         const value = event.target.value;
 
-        setForm({
-            ...form,
-            [property]: value
-        });
+        if(property === 'countryID') { // Seteando datos únicamente para el select de Countries
+            const countryName = event.target.options[event.target.selectedIndex].text; //De esta manera obtengo el nombre del país. 
+            const countryData = {
+                id: value, 
+                countryName
+            }
+            setForm({
+                ...form,
+                countryID: [...form.countryID, value]
+            })
+            setCountriesName({
+                ...countriesName,
+                countries: [...countriesName.countries, countryData]
+            });
+        } else {
+            setForm({
+                ...form,
+                [property]: value
+            });
+        }
 
+        //Validando datos de cada input del formulario
         setErrors(validation({
             ...form,
             [property]: value
         })) 
-    }
-
-    function handleClick(e) {
-        e.preventDefault();
-        const { value } = e.target;
-        const countryName = e.target.options[e.target.selectedIndex].text;
-        const countryData = {
-            id: value, 
-            countryName
-        }
-        setForm({
-            ...form,
-            countryID: [...form.countryID, value]
-        })
-        setCountriesName({
-            ...countriesName,
-            countries: [...countriesName.countries, countryData]
-        });
     }
 
     function handleDelete(idCountry) {
@@ -78,14 +77,19 @@ export default function Activities() {
             ...countriesName,
             countries: countriesName.countries.filter((country) => country.id !== idCountry)
         });
+
+        setErrors(validation({
+            ...form,
+            countryID: form.countryID.filter((country) => country !== idCountry)
+        })) 
         
     }
 
     const submitHandler = (event) => {
         event.preventDefault();
         axios.post('http://localhost:3001/activities', form)
-            .then(res   => alert(res))
-            .catch(err  => alert(err))
+            .then(res   => {alert(res.data); window.location.reload(true)})
+            .catch(err  => alert(err.response.data.error))
     }
 
     return (
@@ -98,7 +102,7 @@ export default function Activities() {
                     {errors.name && <span>{errors.name}</span>}
                 </div>
 
-                <div>
+                <div className={style.select}>
                     <label>Difficulty: </label>
                     <select name="difficulty" defaultValue={'DEFAULT'} onChange={changeHandler}>
                         <option value="DEFAULT" disabled>Sort by name</option>
@@ -116,10 +120,10 @@ export default function Activities() {
                     {errors.duration && <span>{errors.duration}</span>}
                 </div>
 
-                <div>
+                <div className={style.select}>
                     <label>Season: </label>
-                    <select name="season" onChange={changeHandler} >
-                            <option value=''>Select Season</option>
+                    <select name="season" onChange={changeHandler} defaultValue={''}>
+                            <option value='' disabled>Select Season</option>
                             <option value="summer">Summer</option>
                             <option value="autumn">Autumn</option>
                             <option value="winter">Winter</option>
@@ -128,10 +132,10 @@ export default function Activities() {
                     {errors.season && <span>{errors.season}</span>}
                 </div>
 
-                <div>                    
+                <div className={style.select}>                    
                     <label>Country: </label>
-                    <select id='country' name='countryID' defaultValue={'DEFAULT'} onChange={handleClick}>
-                        <option value="DEFAULT" disabled>Select countries...</option> 
+                    <select id='country' name='countryID' defaultValue={''} onChange={changeHandler}>
+                        <option value="" disabled>Select countries...</option> 
                         {countries?.map(country => (
                         <option value={country.id} key={country.id}>{country.name}</option>
                         ))}
@@ -139,18 +143,20 @@ export default function Activities() {
                     {errors.countryID && <span>{errors.countryID}</span>}
                 </div>
 
-                <div>
+                <div className={style.countries_selected}>
                 {countriesName.countries?.map((country) => {
                 return (
                     <div key={country.id} className={style.containerID}>
-                        <h5 className={style.pais}>{country.countryName}</h5>
+                        <p className={style.pais}>{country.countryName}</p>
                         <button type='button' className={style.cruz} onClick={() => handleDelete(country.id)}>X</button>
                     </div>
                     );
                 })}
                 </div> 
-
-                <button className="global_button" type="submit">Submit</button>
+                
+                { Object.keys(errors).length === 0 ? 
+                <button className="global_button" type="submit">Submit</button> : 
+                <button className="global_button" type="submit" disabled>Submit</button>}
             </form>
         </div>
     )

@@ -3,9 +3,9 @@ const regexTime = /^(((([0-1][0-9])|(2[0-3])):?[0-5][0-9]:?[0-5][0-9]+$))/;
 export default function validation(data) {
     const errors = {};
     // Name validation
-    if (!data.name) errors.name = 'Missing activity name';
+    // if (!data.name) errors.name = 'Missing activity name';
 
-    else if (!data.name.length > 35) errors.name = 'The activity name cannot be longer than 35 characters.';
+    // else if (!data.name.length > 35) errors.name = 'The activity name cannot be longer than 35 characters.';
     
     // Difficulty validation
     if (!data.difficulty) errors.difficulty = 'Missing difficulty value';
@@ -32,7 +32,7 @@ export default function validation(data) {
     if (flagSeason === 0) errors.season = 'Season does not match any of the options';
 
     //Country validation
-    if (!data.countryID) errors.countryID = 'Select at least one Country';
+    if (!data.countryID?.length) errors.countryID = 'Select at least one Country';
 
     return errors;
 }

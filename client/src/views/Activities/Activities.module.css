@@ -41,7 +41,30 @@
     outline: none;
 }
 
+.activity form span {
+    font-size: 0.9rem;
+    color: rgba(255, 0, 0, 0.653);
+}
+
 .activity button {
     width: 100%;
     margin-top: 1rem;
+}
+
+.activity button:disabled {
+    background-color: #00000027;;
+}
+
+/*Estilos para los Select options*/
+
+.select {
+    width: 100%;
+}
+
+.select select {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 10px;
+    border: none;
+    box-shadow: 3px 2px 8px 2px #dfd9d9;
 }
