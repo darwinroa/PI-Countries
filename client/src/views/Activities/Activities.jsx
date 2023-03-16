@@ -146,7 +146,7 @@ export default function Activities() {
                 <div className={style.countries_selected}>
                 {countriesName.countries?.map((country) => {
                 return (
-                    <div key={country.id} className={style.containerID}>
+                    <div key={country.id} className={style.country_selected}>
                         <p className={style.pais}>{country.countryName}</p>
                         <button type='button' className={style.cruz} onClick={() => handleDelete(country.id)}>X</button>
                     </div>

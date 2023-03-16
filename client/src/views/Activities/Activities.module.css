@@ -68,3 +68,24 @@
     border: none;
     box-shadow: 3px 2px 8px 2px #dfd9d9;
 }
+
+.activity .countries_selected, .country_selected  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.country_selected {
+    margin-right: 1rem;
+}
+
+.country_selected .cruz {
+    width: 2rem;
+    height: 2rem;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    margin: 0;
+    margin-left: 5px;
+}
