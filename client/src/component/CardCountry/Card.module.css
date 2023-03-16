@@ -1,11 +1,89 @@
 .card {
-    width: 250px;
-    border: solid 1px green;
-    padding: 10px;
+    display: flex;
+    background-color: #fff;
+    height: 135px;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 7px 7px 3px 0px #8c8c8c3d;
+    transition: all .3s ease;
 }
 
-.card img {
+.card:hover {
+    box-shadow: 7px 7px 10px 5px #8c8c8c3d;
+}
+
+.card .content_img {
+    width: 40%;
+}
+
+.content_img img {
     width: 100%;
-    height: 150px;
+    height: 100%;
     object-fit: cover;
+}
+
+.card .content_info {
+    width: 60%;
+    padding: 1rem;
+}
+
+.content_info h3 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.content_info p {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+/*Estilos para el botón de ver más detalles*/
+.cta {
+  border: none;
+  background: none;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 2px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.card:hover .cta svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover_underline_animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.hover_underline_animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.card:hover .cta .hover_underline_animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

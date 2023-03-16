@@ -12,19 +12,17 @@ export default function Paged({ countriesPerPage, allCountries, paged }) {
     }
     
     return (
-        <nav className={style.paged}>
-            <ul>
-                {
-                    pageNumbers &&
-                    pageNumbers.map(number => (
-                        
-                        <button className={style.botpag} key={number} onClick={() => paged(number)}>{number}</button>
-                        
-                    ))
-                }
-            </ul>
+        <div className={style.paged}>
+            {
+                pageNumbers &&
+                pageNumbers.map(number => (
+                    
+                    <button className={style.botpag} key={number} onClick={() => paged(number)}>{number}</button>
+                    
+                ))
+            }
 
-        </nav>
+        </div>
     );
     }
 

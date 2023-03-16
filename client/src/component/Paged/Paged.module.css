@@ -1,9 +1,24 @@
 .paged {
+    width: 100%;
     display: flex;
-    border: solid 1.5px darkred;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    overflow: auto;
-    list-style:none
+    list-style:none;
+    margin: 1rem auto;
+}
+
+.paged button {
+    border-color: rgba(114, 114, 114, 0.1);
+    border-radius: 50px;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 7px;
+    background-color: #fff;
+    font-size: 1rem;
+}
+
+.paged button:hover {
+    box-shadow: 3px 2px 8px 2px #dfd9d9;
 }

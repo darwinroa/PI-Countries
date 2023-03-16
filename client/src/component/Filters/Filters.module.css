@@ -1,0 +1,42 @@
+.filter {  /*Estilos para el contenedor de los filtros*/
+    max-width: 250px;
+    width: 18%;
+    background-color: white;
+    padding: 1.5rem;
+    box-shadow: 0px 0px 20px 5px #8c8c8c3d;
+}
+
+
+/*Estilos para el input de búsqueda*/
+.search {
+    margin: 2rem 0;
+    width: 90%;
+}
+
+.search input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 3px 2px 8px 2px #dfd9d9;
+}
+
+/*Estilos para los Select options*/
+
+.filter_select {
+    width: 100%;
+}
+
+.filter_select select {
+    width: 100%;
+    margin-bottom: 2rem;
+    padding: 10px;
+    border: none;
+    box-shadow: 3px 2px 8px 2px #dfd9d9;
+}
+
+/*Estilos para el botón de Reset*/
+.content_button {
+    display: flex;
+    justify-content: center;
+}

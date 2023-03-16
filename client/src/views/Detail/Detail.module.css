@@ -1,0 +1,55 @@
+.detail {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 4rem auto;
+}
+
+.content_flag {
+    width: 64%;
+    min-width: 320px;
+}
+
+.content_flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content_description {
+    width: 34%;
+    min-width: 320px;
+}
+
+.content_activities {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.content_activities h2 {
+    text-align: center;
+}
+
+/*Estilos para las tablas de los tours*/
+.tourist_table {
+    width: 80%;
+    min-width: 700px;
+    margin: auto;
+}
+
+.tourist_table th {
+    text-align-last: left;
+    font-size: 1.8rem;
+    padding: 10px 1rem;
+}
+
+.tourist_table tr:nth-child(odd) {
+    background-color: #d4d4d4;
+}
+
+.tourist_table td {
+    padding: 5px 1rem;
+}

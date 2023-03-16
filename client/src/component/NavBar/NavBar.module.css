@@ -1,8 +1,51 @@
 .navbar {
     width: 100%;
-    padding: 2rem;
-    background-color: beige;
-    border: solid 1px green;
+    background-color: white;
+    padding: 1rem 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: center; 
+    box-shadow: 0px 5px 20px 0px #8c8c8c3d;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
 }
+
+.navbar .container {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .menu {
+    display: flex;
+}
+
+/* estilos para los ítems del menú */
+.navbar .menu a {
+    margin-left: 4rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-size: 25px;
+    border: none;
+    background: none;
+  }
+  
+.navbar .menu a::before {
+    margin-left: auto;
+  }
+  
+.navbar .menu a::after, .navbar .menu a::before {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #5EC7D3;
+    display: block;
+    transition: 0.5s;
+  }
+  
+.navbar .menu a:hover::after, .navbar .menu a:hover::before {
+    width: 100%;
+  }
