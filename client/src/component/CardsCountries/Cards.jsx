@@ -1,25 +1,25 @@
 import Card from "../CardCountry/Card";
 import Paged from "../Paged/Paged";
 import style from './Cards.module.css';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from 'react-redux';
 
 
-export default function Cards() {
+export default function Cards({ indexOfFirstCountry, indexOfLastCountry, countriesPerPage, paged }) {
     const countries = useSelector(state => state.countries); //Obteniendo el estado de los países listados
     /**
      * Creando los estados del paginado
      */
 
-    const [currentPage, setCurentPage] = useState(1);
-    const countriesPerPage = 10;
-    const indexOfLastCountry = currentPage * countriesPerPage;
-    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    // const [currentPage, setCurentPage] = useState(1);
+    // const countriesPerPage = 10;
+    // const indexOfLastCountry = currentPage * countriesPerPage;
+    // const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry);
 
-    const paged = (pageNumber) => {
-        setCurentPage(pageNumber);
-    }
+    // const paged = (pageNumber) => {
+    //     setCurentPage(pageNumber);
+    // }
     
     return (
         <>

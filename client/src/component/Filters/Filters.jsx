@@ -3,7 +3,7 @@ import { orderByName, orderByPopulation, filterByContinent, filterByActivities, 
 import style from "./Filters.module.css"
 
 
-export default function Filters() {
+export default function Filters({ paged }) {
     const activities = useSelector(state => state.activities); //Obteniendo el estado de las actividades listadas
 
     const dispatch = useDispatch();
@@ -11,6 +11,7 @@ export default function Filters() {
     function handleClick(e) {
         e.preventDefault();
         const { name, value } = e.target;
+        paged(1)
         if (name === 'orderByName') dispatch(orderByName(value));
         if (name === 'orderByPopulation') dispatch(orderByPopulation(value));
         if (name === 'filterByContinent') dispatch(filterByContinent(value));
